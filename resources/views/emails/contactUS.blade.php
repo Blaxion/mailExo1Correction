@@ -11,5 +11,5 @@
 </body>
 </html> --}}
 @component('mail::message')
-    {{$details['message']}}
+    {{$details['content']}}
 @endcomponent

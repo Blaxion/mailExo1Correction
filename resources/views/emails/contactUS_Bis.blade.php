@@ -1,1 +1,3 @@
-{{ Illuminate\Mail\Markdown::parse($message) }}
+
+{{$content}}
+{{ Illuminate\Mail\Markdown::parse($content) }}

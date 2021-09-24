@@ -9,10 +9,10 @@ use Illuminate\Support\Facades\Mail;
 
 class MailController extends Controller
 {
-    // Methode Moderne
+    public $details;
     public function contactus(Request $request){
         $details = [
-            'message'=>$request->message
+            'content'=>$request->message
         ];
         Mail::to('dorianGEEEE@gmail.com')->send(new ContactUS ($details));
         return redirect()->back();
@@ -20,15 +20,16 @@ class MailController extends Controller
 
     // Methode Oldschool
     public function contactusbis(Request $request){
-        $details = [
-            'message'=>$request->message,
+        $this->details= [
+            'content'=>$request->message,
             'subject'=>$request->subject,
         ];
-        Mail::send('emails.contactUS_Bis',$details,function($message){
+        
+        Mail::send('emails.contactUS_Bis',$this->details,function($message){
             $message
                 ->to('dorianGEEEE@gmail.com')
                 ->from(Auth::user()->email)
-                ->subject($details['subject']);
+                ->subject($this->details['subject']);
                 
         });
         return redirect()->back();
